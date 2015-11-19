@@ -4,7 +4,7 @@ class dbHelper {
     private $db;
     private $err;
     function __construct() {
-        $dsn = 'mysql:host=localhost;dbname=taqui;charset=utf8';
+        $dsn = 'mysql:host=localhost;dbname=cbsoft_bd;charset=utf8';
         
         try {
             $this->db = new PDO($dsn, "root", "", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -64,23 +64,16 @@ class dbHelper {
         }
         return $response;
     }
-    function selectFarmacia(){
-        $a = array();
+    function getavaliacao(){
+        $a = array(); 
         try{
-            $sql="select f.id,f.nome,f.endereco,f.telefone1,f.telefone2,f.status,f.palavrasChave,f.posicao,f.foto,f.aviso,f.textoplantao,f.latitude,f.longitude
-                   FROM farmacia f";
+            $sql="SELECT AVG(nota) as nota FROM avaliacao WHERE idpalestra='palestra01'";
             
             $stmt = $this->db->prepare($sql);
             $stmt->execute($a);
             $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
-            if(count($rows)<=0){
-                $response["status"] = "warning";
-                $response["message"] = "No data found.";
-            }else{
-                $response["status"] = "success";
-                $response["message"] = "Data selected from database";
-            }
+            
                 $response["data"] = $rows;
         }catch(PDOException $e){
             $response["status"] = "error";
@@ -89,6 +82,7 @@ class dbHelper {
         }
         return $response;
     }
+    
      function selectFarmaciaWEBservice(){
          $a = array();
         try{
@@ -292,6 +286,31 @@ public function destroySession(){
     }
     return $msg;
 }
+function selectperguntas($table, $columns, $where=null){
+        try{
+            $a = array();
+            $w = "";
+            if($where){
+              $stmt = $this->db->prepare("select ".$columns." from ".$table." where 1=1 and ".$where);
+            
+            }
+            $stmt->execute($a);
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(count($rows)<=0){
+                $response["status"] = "warning";
+                $response["message"] = "No data found.";
+            }else{
+                $response["status"] = "success";
+                $response["message"] = "Data selected from database";
+            }
+                $response["data"] = $rows;
+        }catch(PDOException $e){
+            $response["status"] = "error";
+            $response["message"] = 'Select Failed: ' .$e->getMessage();
+            $response["data"] = null;
+        }
+        return $response;
+    }
 }
 
 ?>
