@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html ng-app="cbsof_projeto">
     <head>
-        <title>TODO supply a title</title>
+        <title>CBsoft 2016 .::. Perguntas .::.</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="templates/css/bootstrap.css">
@@ -34,24 +34,26 @@ and open the template in the editor.
             </div>
             
             
-             <div class="container" ng-controller="getperguntas">
+            <div class="container-fluid" ng-controller="getperguntas">
         <div class="row pad-top pad-bottom">
             <div class=" col-lg-12 col-md-12 col-sm-12">
                 <div class="chat-box-div">
-                    <div class="chat-box-head">
+                    <div class="chat-box-head" >
                         CBsoft2016 
                             
                     </div>
-                    <div class="panel-body chat-box-main" ng-repeat="c in perguntas">
-                        <div class="chat-box-left">
-                            {{c.pergunta}}
+                   
+                        <div  id="listapergunta" class="panel-body chat-box-main"  ng-repeat="c in perguntas">
+                            <div class="chat-box-left">
+                                {{c.pergunta}}
+                            </div>
+                            <div class="chat-box-name-left">
+                                - {{c.nomeusuario}}
+                            </div>
+                            <hr class="hr-clas" />
+
                         </div>
-                        <div class="chat-box-name-left">
-                            - {{c.nomeusuario}}
-                        </div>
-                        <hr class="hr-clas" />
-                       
-                    </div>
+                
                     
 
                 </div>
@@ -72,6 +74,7 @@ and open the template in the editor.
         <script>
           var idpalestra=getUrlParameter("idpalestra");
           var nomeusuario=getUrlParameter("nome");
+         
         </script>
           
     </body>

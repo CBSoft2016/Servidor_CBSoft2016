@@ -26,18 +26,17 @@ body {
     overflow:auto;
 }
 .chat-box-div {
-    border:2px solid #A12EB3;
-    border-bottom:2px solid #A12EB3;
+   
     height: 450px;
     overflow: auto;
     background: #fff;
 } 
 .chat-box-head {
     padding: 10px 15px;
-border-bottom: 2px solid #A12EB3;
-background-color: #B25AE5;
-color: #fff;
-text-align: center;
+   
+    background-color: #B25AE5;
+    color: #fff;
+    text-align: center;
 
 }
 

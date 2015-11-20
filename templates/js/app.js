@@ -14,14 +14,16 @@ function getUrlParameter(name) {
      var pergunta=$("#perguntatext").val();
      $.post( "cadastrapergunta", { idpalestra: idpalestra, pergunta: pergunta,nomeusuario:nomeusuario })
         .done(function( ) {
-    alert( "Pergunta enviada com sucesso ");
+            alert( "Pergunta enviada com sucesso ");
+            $("#perguntatext").val("");
     });
   
 
  }
  
  cbsof_projeto.controller('getperguntas', function ($timeout,$scope, $rootScope, $window, $http,Data){
-    $scope.perguntas;
+
+     $scope.perguntas;
     var idpalestra=getUrlParameter("idpalestra");
     Data.get('getperguntas/'+idpalestra).then(function(data){
         $scope.perguntas = data.data;
@@ -34,9 +36,10 @@ function atualizalista(){
         function (){
         console.log("execucao do tempo",Date.now()) ;          
         },
-        1000
+        10000
      );
      tempo.then(function (){
+      
          console.log("5 segundos");
         $http({
             method:'GET',
@@ -45,6 +48,7 @@ function atualizalista(){
         .success(function (data,status,headers,config){
             $scope.perguntas = data.data;
             atualizalista();
+            
         })
      }
       
@@ -52,7 +56,6 @@ function atualizalista(){
      
 }
     atualizalista();
-    
-    
+
 });
         
