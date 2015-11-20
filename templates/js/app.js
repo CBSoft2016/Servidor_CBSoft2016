@@ -1,3 +1,4 @@
+var tempo;
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -19,7 +20,7 @@ function getUrlParameter(name) {
 
  }
  
- cbsof_projeto.controller('getperguntas', function ($scope, $rootScope, $window, $http,Data){
+ cbsof_projeto.controller('getperguntas', function ($timeout,$scope, $rootScope, $window, $http,Data){
     $scope.perguntas;
     var idpalestra=getUrlParameter("idpalestra");
     Data.get('getperguntas/'+idpalestra).then(function(data){
@@ -27,6 +28,31 @@ function getUrlParameter(name) {
     });
     
     
+//    http://stackoverflow.com/questions/23181616/angular-js-update-json-on-interval-and-update-the-view
+function atualizalista(){
+    tempo=$timeout(
+        function (){
+        console.log("execucao do tempo",Date.now()) ;          
+        },
+        1000
+     );
+     tempo.then(function (){
+         console.log("5 segundos");
+        $http({
+            method:'GET',
+            url:"getperguntas/"+idpalestra
+        })
+        .success(function (data,status,headers,config){
+            $scope.perguntas = data.data;
+            atualizalista();
+        })
+     }
+      
+    )
+     
+}
+    atualizalista();
+    
+    
 });
-         
-          
+        

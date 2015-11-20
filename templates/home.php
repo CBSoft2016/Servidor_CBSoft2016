@@ -63,12 +63,6 @@ and open the template in the editor.
                             </span>
            
                         </div>
-                        <div class="input-group col-lg-12 col-md-12 col-sm-12" style="margin-top: 20px;">
-   
-                            <span class="input-group-btn">
-                                <button class="btn btn-success  col-lg-12 col-md-12 col-sm-12" type="button" onclick="atualizalista()">Atualizar lista</button>
-                            </span>
-                        </div>
                     </div>
 
             </div>
