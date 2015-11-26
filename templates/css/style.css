@@ -2,10 +2,11 @@
 /*======================================
     GENERAL STYLES
 ======================================= */
-
 body {
    font-family:Verdana;
    background: #F3F3F4;
+   width: auto;
+   height: auto;
 }
 .pad-top {
     padding-top:30px;
@@ -22,12 +23,11 @@ body {
 }
 
 .chat-box-main {
-    max-height:500px;
-    overflow:auto;
+    height:auto;
+
 }
 .chat-box-div {
-   
-    height: 450px;
+
     overflow: auto;
     background: #fff;
 } 
