@@ -4,7 +4,7 @@ class dbHelper {
     private $db;
     private $err;
     function __construct() {
-        $dsn = 'host=localhost;dbname=cbsoft_bd;charset=utf8';
+        $dsn = 'mysql:host=localhost;dbname=cbsoft_bd;charset=utf8';
         
         try {
             $this->db = new PDO($dsn, "root", "", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
